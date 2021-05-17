@@ -1,0 +1,25 @@
+.bmct-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.bmct-icons-container>div:first-of-type {
+    min-width: 130px;
+}
+
+.bmct-icons-container .bmct-addShre-icons {
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+
+.bmct-add-content {
+    display: block;
+    margin-right: .3em;
+}
+
+.bmct-icons-container:not(:first-of-type) {
+    margin-top: 5px;
+}
