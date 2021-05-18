@@ -1,6 +1,6 @@
 {
   "name": "add-to-calendar-icons",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "build": "del -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -28,7 +28,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "globals": {
+      "moment": true
+    }
   },
   "browserslist": {
     "production": [
