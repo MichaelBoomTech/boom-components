@@ -1,0 +1,132 @@
+.bmct-icons-container>div {
+    user-select: none;
+}
+
+.bmct-icons-vertical .bmct-icons-container>div:first-of-type {
+    min-width: 130px;
+}
+
+.bmct-icons-vertical .bmct-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-self: center
+}
+
+.bmct-icons-vertical .bmct-icons-container {
+    margin: 5px 0
+}
+
+.bmct-icons-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.bmct-icons-horizontal .bmct-icons-container {
+    text-align: center;
+}
+
+.bmct-icons-horizontal .bmct-icons-container > div:first-of-type {
+    margin-bottom: 5px;
+}
+
+.bmct-icons-horizontal .bmct-icons-container:first-of-type {
+    padding-right: 30px;
+}
+
+.bmct-icons-horizontal .bmct-icons-container:nth-of-type(2) > div {
+    padding-left: 31px;
+}
+
+.bmct-icons-horizontal .bmct-icons-container:nth-of-type(2) > div:nth-of-type(2) {
+    border-left: 1px solid grey;
+}
+
+.bmct-icons-container .bmct-add-share-icon {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 5px;
+    vertical-align: middle;
+    cursor: pointer;
+
+}
+
+.bmct-add-content {
+    display: block;
+    margin-right: .3em;
+}
+
+.bmct-google {
+    background-image: url('./images/google.svg');
+}
+
+.bmct-outlook {
+    background-image: url('./images/outlook.svg');
+}
+
+.bmct-icalendar {
+    background-image: url('./images/apple.svg');
+}
+
+.bmct-yahoo {
+    background-image: url('./images/yahoo.svg');
+}
+
+.bmct-facebook {
+    background-image: url('./images/facebook.png');
+}
+
+.bmct-linkedin {
+    background-image: url('./images/linkedin.png');
+}
+
+.bmct-twitter {
+    background-image: url('./images/twitter.png');
+}
+
+.bmct-copyLink {
+    background-image: url('./images/copyLink.png');
+    position: relative;
+}
+
+.bmct-copyLink .copy-tooltip {
+    visibility: hidden;
+    width: max-content;
+    max-width: 300px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 18px;
+    right: -12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-left: -105px;
+    font-family: "Lato", poppins, sans-serif;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+    font-size: 12px !important;
+}
+
+.bmct-copyLink .copy-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.bmct-copyLink:hover .copy-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
