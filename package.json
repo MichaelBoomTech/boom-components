@@ -1,14 +1,14 @@
 {
   "name": "boom-components",
-  "version": "0.1.9",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "version": "0.2.1",
+  "main": "components/index.js",
+  "module": "components/index.js",
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "rimraf dist && NODE_ENV=production babel src/components --out-dir dist --copy-files"
+    "build": "rimraf components && NODE_ENV=production babel devComponents/*/src --out-dir components --copy-files --ignore node_modules,babel.config.js,index.js,App.js,App.css,index.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
