@@ -1,8 +1,8 @@
 {
   "name": "boom-components",
-  "version": "0.2.1",
-  "main": "components/index.js",
-  "module": "components/index.js",
+  "version": "0.2.2",
+  "main": "./index.js",
+  "module": "./devComponents/index.js",
   "files": [
     "dist",
     "README.md"
