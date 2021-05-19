@@ -1,3 +1,3 @@
-import AddToCalendarIcons from './AddToCalendarIcons/dist/index'
+import AddShareIcons from './AddShareIcons/dist';
 
-export {AddToCalendarIcons}
+export {AddShareIcons}
