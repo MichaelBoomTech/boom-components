@@ -1,9 +1,7 @@
 {
   "name": "add-to-calendar-icons",
-  "version": "2.1.5",
+  "version": "2.1.7",
   "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
   "files": [
     "dist",
     "README.md"

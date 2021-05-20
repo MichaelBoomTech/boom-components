@@ -1,4 +1,4 @@
-import AddShareIcons from './AddShareIcons/index';
+import AddShareIcons from './lib/AddShareIcons/index';
 
 function App() {
 
