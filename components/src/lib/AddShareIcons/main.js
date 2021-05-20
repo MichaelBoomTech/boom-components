@@ -54,7 +54,6 @@ export default function AddShareIcons(props) {
 
    return (
       <div className={`bmct-icons-${props.sequence}`}>
-         <h1>Changes are defined</h1>
          {
             props.showAddToIcons ?
             <div className={`bmct-icons-container ${props.iconsSectionCustomClassNames.join(' ')}`}>
