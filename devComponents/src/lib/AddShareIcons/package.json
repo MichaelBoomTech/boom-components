@@ -1,0 +1,4 @@
+{
+    "sideEffects": false,
+    "module": "../devComponents/src/lib/AddShareIcons/index.js"
+}
