@@ -2,8 +2,9 @@
 
 ### Usage
 1. If the library is not set in package.json, just do **"npm i git+https://github.com/NavasardianMichael/boom-components.git"**
-1. For installing the updated version of the library, just add this pair to **scripts** in **package.json**: **"update:bc": "npm install git+https://github.com/NavasardianMichael/boom-components.git"**, and run the command **"npm run update:bc"** to install the fresh version of the library
-1. Import needed component separately, e.g.: **"import AddShareIcons from 'boom-components/dist/AddShareIcons'"**
+2. For installing the updated version of the library, just add this pair to **scripts** in **package.json**: **"update:bc": "npm install git+https://github.com/NavasardianMichael/boom-components.git"**, and run the command **"npm run update:bc"** to install the fresh version of the library
+3. Import needed component separately, e.g.: **"import AddShareIcons from 'boom-components/dist/AddShareIcons'"**
+4. Happy Hacking!
 
 
 
@@ -17,7 +18,7 @@
 
 **Prop** | **Value**
 ---- | ----------
-comp_id | 'comp-knoo8ma8
+comp_id | 'comp-knoo8ma8'
 instance | 'YBqfV6G8MmNwz...'
 event | *event json*
 iconsSectionCustomClassNames | ['customClassName1']
