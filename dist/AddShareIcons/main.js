@@ -46,7 +46,7 @@ function AddShareIcons(props) {
   });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "bmct-icons-".concat(props.sequence)
-  }, props.showAddToIcons ? /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Changes are defined !!!!!!!!!!!!!"), props.showAddToIcons ? /*#__PURE__*/_react.default.createElement("div", {
     className: "bmct-icons-container ".concat(props.iconsSectionCustomClassNames.join(' '))
   }, /*#__PURE__*/_react.default.createElement("div", null, props.addToSectionTitle), /*#__PURE__*/_react.default.createElement("div", null, addIcons)) : null, props.showShareIcons ? /*#__PURE__*/_react.default.createElement("div", {
     className: "bmct-icons-container ".concat(props.iconsSectionCustomClassNames.join(' '))
