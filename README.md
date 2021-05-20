@@ -16,19 +16,19 @@
 #### AddShareIcons
 
 
-**Prop** | **Value**
----- | ----------
-comp_id | 'comp-knoo8ma8'
-instance | 'YBqfV6G8MmNwz...'
-event | *event json*
-iconsSectionCustomClassNames | ['customClassName1']
-showAddToIcons | true
-addToSectionTitle | 'Add to calendar'
-addToIconsCustomClassNames | ['customClassName2', 'customClassName3' ]}
-showShareIcons | true
-shareSectionTitle | 'Share Event'
-shareIconsCustomClassNames | ['customClassName4', 'customClassName5' ]}
-boomEventUrlBase | 'https://calendar.boomte.ch/single/'
-copyActionTooltipText | 'Copy event url'
-copiedTooltipText | 'Copied'
-sequence | 'vertical' / 'horizontal'
+**Prop** | **Value** | **type**
+---- | ---------- | ----
+comp_id | 'comp-knoo8ma8' | string **(Required)**
+instance | 'YBqfV6G8MmNwz...' | string **(Required)**
+event | *event json* | object **(Required)**
+iconsSectionCustomClassNames | ['customClassName1'] | arrayOf(PropTypes.string)
+showAddToIcons | true | bool
+addToSectionTitle | 'Add to calendar' | string
+addToIconsCustomClassNames | ['customClassName2', 'customClassName3' ] | arrayOf(PropTypes.string)
+showShareIcons | true | bool
+shareSectionTitle | 'Share Event' | string
+shareIconsCustomClassNames | ['customClassName4', 'customClassName5' ]} | arrayOf(PropTypes.string)
+boomEventUrlBase | 'https://calendar.boomte.ch/single/' | string **(Required)**
+copyActionTooltipText | 'Copy event url' | string
+copiedTooltipText | 'Copied' | string
+sequence | 'vertical' | oneOf(['vertical' 'horizontal'])
