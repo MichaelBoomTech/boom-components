@@ -1,24 +1,18 @@
 {
   "name": "boom-components",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "./components/index.js",
   "module": "./devComponents/src/lib/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "scripts": {
     "build": "rimraf components && NODE_ENV=production babel devComponents/src/lib --out-dir components --copy-files"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/polyfill": "^7.12.1",
     "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
-    "react-scripts": "4.0.3"
-  },
-  "devDependencies": {
+    "react-scripts": "4.0.3",
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
