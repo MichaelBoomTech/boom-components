@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './main.css';
 import {
+   checkProps,
+   generateCustomClassNames,
    downloadSharer,
    openShareUrl,
    openAddToUrl,
    copyLink,
    generateEventUrl,
+   DEFAULTS,
 } from './helpers';
 
 export default function AddShareIcons(props) {
 
-   const [ copyTooltipText, setCopyTooltipText ] = useState(props.copyActionTooltipText);
+   const [ copyTooltipText, setCopyTooltipText ] = useState(props.copyActionTooltipText ?? DEFAULTS.copyActionTooltipText);
    
-   
-   if(!props.showAddToIcons && !props.showShareIcons) return null; 
+   if(!checkProps(props)) return null
 
    const addToTypes = [ 'google', 'outlook', 'icalendar', 'yahoo' ];
    const shareTypes = [ 'facebook', 'linkedin', 'twitter', 'copyLink' ];
@@ -25,7 +28,7 @@ export default function AddShareIcons(props) {
       return (
          <span
             key={type} 
-            className={ `bmct-add-share-icon bmct-${type} ${props.addToIconsCustomClassNames.join(' ')}` }
+            className={ `bmct-add-share-icon bmct-${type}${generateCustomClassNames(props.addToIconsCustomClassNames)}` }
             onClick={ clickHandler }
          />
       )
@@ -39,9 +42,9 @@ export default function AddShareIcons(props) {
       return (
          <span
             key={type} 
-            className={ `bmct-add-share-icon bmct-${type} ${props.shareIconsCustomClassNames.join(' ')}` }
+            className={ `bmct-add-share-icon bmct-${type}${generateCustomClassNames(props.shareIconsCustomClassNames)}` }
             onClick={ clickHandler }
-            onMouseOut={ () => type === 'copyLink' && setCopyTooltipText(props.copyActionTooltipText) }
+            onMouseOut={ () => type === 'copyLink' && setCopyTooltipText(props.copyActionTooltipText ?? DEFAULTS.copyActionTooltipText) }
          >
             {
                type === 'copyLink' &&
@@ -53,26 +56,40 @@ export default function AddShareIcons(props) {
    })
 
    return (
-      <div className={`bmct-icons-${props.sequence}`}>
-         <h1>Changes are defined !!!!!!!!!!!!!</h1>
+      <div className={`bmct-icons-${DEFAULTS.sequence.includes(props.sequence) ? props.sequence : DEFAULTS.sequence[0]}`}>
          {
             props.showAddToIcons ?
-            <div className={`bmct-icons-container ${props.iconsSectionCustomClassNames.join(' ')}`}>
-               <div>{ props.addToSectionTitle }</div>
+            <div className={`bmct-icons-container${generateCustomClassNames(props.iconsSectionCustomClassNames)}`}>
+               <div>{ props.addToSectionTitle ?? DEFAULTS.addToSectionTitle }</div>
                <div>{ addIcons }</div>
             </div> :
             null
          }
          {
             props.showShareIcons ?
-            <div className={`bmct-icons-container ${props.iconsSectionCustomClassNames.join(' ')}`}>
-               <div>{ props.shareSectionTitle }</div>
+            <div className={`bmct-icons-container${generateCustomClassNames(props.iconsSectionCustomClassNames)}`}>
+               <div>{ props.shareSectionTitle ?? DEFAULTS.shareSectionTitle }</div>
                <div>{ shareIcons }</div>
             </div> :
-            null          
+            null
          }
       </div>
    )
 }
 
-
+AddShareIcons.propTypes = {
+   comp_id: PropTypes.string.isRequired,
+   instance: PropTypes.string.isRequired,
+   event: PropTypes.object.isRequired,
+   boomEventUrlBase: PropTypes.string.isRequired,
+   iconsSectionCustomClassNames: PropTypes.arrayOf(PropTypes.string),
+   showAddToIcons: PropTypes.bool,
+   addToSectionTitle: PropTypes.string,
+   addToIconsCustomClassNames: PropTypes.arrayOf(PropTypes.string),
+   showShareIcons: PropTypes.bool,
+   shareSectionTitle: PropTypes.string,
+   shareIconsCustomClassNames: PropTypes.arrayOf(PropTypes.string),
+   copyActionTooltipText: PropTypes.string,
+   copiedTooltipText: PropTypes.string,
+   sequence: PropTypes.oneOf(['vertical', 'horizontal'])
+}

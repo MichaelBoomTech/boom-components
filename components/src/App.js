@@ -20,17 +20,17 @@ function App() {
           comp_id={'comp-knoo8ma8'}
           instance={'YBqfV6G8MmNwzv-dQ5ASggk5froH6YF9uReO2n3FbNw.eyJpbnN0YW5jZUlkIjoiMjFmZDIwNzUtYWFiMy00NDc5LWIxZTYtZDk3M2YxNzc2NDFhIiwiYXBwRGVmSWQiOiIxM2I0YTAyOC0wMGZhLTcxMzMtMjQyZi00NjI4MTA2YjhjOTEiLCJzaWduRGF0ZSI6IjIwMjEtMDUtMThUMDY6MDc6NDcuMDY0WiIsImRlbW9Nb2RlIjpmYWxzZSwiYWlkIjoiYTk2ZWI5NzUtM2YyNS00NzQyLTg3MWUtNDJkNDNkMzdiNGJlIiwic2l0ZU93bmVySWQiOiJjZDQ4NmE0Ny0yODA4LTQxYmUtYjA0NS0xMGI2MDdhZTFiZTQifQ'}
           event={exampleEvent2}
-          iconsSectionCustomClassNames={['loo']}
+          iconsSectionCustomClassNames={['addShareIconsCustomClassName1']}
           showAddToIcons={true}
           addToSectionTitle={'Add to calendar'}
-          addToIconsCustomClassNames={['addToIconsCustomClassNames', 'addToIconsCustomClassNames111111' ]}
+          addToIconsCustomClassNames={['addToIconsCustomClassNames2', 'addToIconsCustomClassNames3' ]}
           showShareIcons={true}
           shareSectionTitle={'Share Event'}
-          shareIconsCustomClassNames={['shareIconsCustomClassNames', 'shareIconsCustomClassNames11111' ]}
+          shareIconsCustomClassNames={['shareIconsCustomClassNames4', 'shareIconsCustomClassName5' ]}
           boomEventUrlBase={'https://calendar.boomte.ch/single/'}
           copyActionTooltipText={'Copy event url'}
           copiedTooltipText={'Copied'}
-          sequence={'horizontal'}
+          sequence={'fa'}
       />
     </div>
   );

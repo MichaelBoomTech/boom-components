@@ -9,7 +9,9 @@ exports.setLocation = setLocation;
 exports.openShareUrl = openShareUrl;
 exports.generateEventUrl = generateEventUrl;
 exports.copyLink = copyLink;
-exports.encodeShareUrl = void 0;
+exports.checkProps = checkProps;
+exports.generateCustomClassNames = generateCustomClassNames;
+exports.DEFAULTS = exports.encodeShareUrl = void 0;
 
 require("core-js/modules/es.string.replace.js");
 
@@ -17,7 +19,6 @@ require("core-js/modules/es.string.split.js");
 
 function downloadSharer(e, type, event) {
   e.stopPropagation();
-  console.log(event.endTime);
   let desc = "".concat(event.desc ? "".concat(event.desc.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " "), "  ") : "").concat(event.venue.name || event.venue.phone || event.venue.email || event.venue.website ? "<p><b>Venue Details.</b></p>  " : "").concat(event.venue.name ? "".concat(event.venue.name, ",<br/>  ") : "").concat(event.venue.phone ? "".concat(event.venue.phone, ",<br/>  ") : "").concat(event.venue.email ? "".concat(event.venue.email, ",<br/>  ") : "").concat(event.venue.website ? "".concat(event.venue.website, ".<br/>  ") : "").concat(event.organizer.name || event.organizer.phone || event.organizer.email || event.organizer.website ? "<p><b>Organizer</b></p>  " : "").concat(event.organizer.name ? "".concat(event.organizer.name, ",<br/>  ") : "").concat(event.organizer.phone ? "".concat(event.organizer.phone, ",<br/>  ") : "").concat(event.organizer.email ? "".concat(event.organizer.email, ",<br/>  ") : "").concat(event.organizer.website ? "".concat(event.organizer.website, ".<br/>  ") : "");
   let icsSharer = "https://calendar.boomte.ch/createIcsFile?title=".concat(event.title, "&desc=").concat(encodeURIComponent(type === 'icalendar' ? desc.replace(/(<([^>]+)>)/ig, '') : desc), "&start=").concat(event.start, "&end=").concat(event.end, "&address=").concat(encodeURIComponent(event.venue.address));
   window.location.href = icsSharer;
@@ -176,12 +177,15 @@ function generateEventUrl(event, encode, boomEventUrlBase, comp_id, instance) {
   if (event.kind === 4) {
     return event.eventPageUrl || '';
   } else {
-    console.log(event.start);
     return "".concat(boomEventUrlBase).concat(encodeShareUrl("".concat(event.id)), "?").concat(encode ? encodeURIComponent("comp_id=".concat(comp_id, "&instance=").concat(instance, "&startDate=").concat(event.repeat.type ? moment(event.start).format('YYYY-MM-DD') : "")) : "comp_id=".concat(comp_id, "&instance=").concat(instance), "&startDate=").concat(event.repeat.type ? moment(event.start).format('YYYY-MM-DD') : "");
   }
 }
 
-function copyLink(e, event, setCopyTooltipText, copiedTooltipText, boomEventUrlBase, comp_id, instance) {
+function copyLink(e, event, setCopyTooltipText) {
+  let copiedTooltipText = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : DEFAULTS.copiedTooltipText;
+  let boomEventUrlBase = arguments.length > 4 ? arguments[4] : undefined;
+  let comp_id = arguments.length > 5 ? arguments[5] : undefined;
+  let instance = arguments.length > 6 ? arguments[6] : undefined;
   e.stopPropagation();
   let a = document.createElement('textarea');
   a.innerText = generateEventUrl(event, false, boomEventUrlBase, comp_id, instance);
@@ -192,3 +196,48 @@ function copyLink(e, event, setCopyTooltipText, copiedTooltipText, boomEventUrlB
   a.remove();
   setCopyTooltipText(copiedTooltipText);
 }
+
+function checkProps(props) {
+  if (!props.showAddToIcons && !props.showShareIcons) {
+    console.warn('AddShareIcons component is called, but both showAddToIcons and showShareIcons properties are falsy');
+    return;
+  }
+
+  if (!props.comp_id) {
+    console.error('component is not rendered as comp_id was missing in props or a falsy value is assagned to it');
+    return;
+  }
+
+  if (!props.instance) {
+    console.error('component is not rendered as instance was missing in props or a falsy value is assagned to it');
+    return;
+  }
+
+  if (!props.event || !props.event.hasOwnProperty('id')) {
+    console.error('component is not rendered as event object was missing in props or doesn\'t match to event object skeleton');
+    return;
+  }
+
+  if (!props.boomEventUrlBase) {
+    console.error('component is not rendered as boomEventUrlBase was missing in props or a falsy value is assagned to it');
+    return;
+  }
+
+  return true;
+}
+
+function generateCustomClassNames(classNames) {
+  var _ref;
+
+  if (!classNames || classNames.length === 0) return '';
+  return (_ref = ' ' + classNames.join(' ')) !== null && _ref !== void 0 ? _ref : '';
+}
+
+const DEFAULTS = {
+  addToSectionTitle: 'Add to calendar',
+  shareSectionTitle: 'Share Event',
+  copyActionTooltipText: 'Copy event url',
+  copiedTooltipText: 'Copied',
+  sequence: ['vertical', 'horizontal']
+};
+exports.DEFAULTS = DEFAULTS;

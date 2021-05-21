@@ -1,6 +1,5 @@
 export function downloadSharer(e, type, event) {
     e.stopPropagation();
-    console.log(event.endTime);
     let desc = `${event.desc ? `${event.desc.replace(/&lt;/g , "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ")}  ` : ""}${(event.venue.name || event.venue.phone || event.venue.email || event.venue.website) ? "<p><b>Venue Details.</b></p>  " : ""}${event.venue.name ? `${event.venue.name},<br/>  ` : ""}${event.venue.phone ? `${event.venue.phone},<br/>  ` : ""}${event.venue.email ? `${event.venue.email},<br/>  ` : ""}${event.venue.website ? `${event.venue.website}.<br/>  ` : ""}${(event.organizer.name || event.organizer.phone || event.organizer.email || event.organizer.website) ? "<p><b>Organizer</b></p>  " : ""}${event.organizer.name ? `${event.organizer.name},<br/>  ` : ""}${event.organizer.phone ? `${event.organizer.phone},<br/>  ` : ""}${event.organizer.email ? `${event.organizer.email},<br/>  ` : ""}${event.organizer.website ? `${event.organizer.website}.<br/>  ` : ""}`
     let icsSharer = `https://calendar.boomte.ch/createIcsFile?title=${event.title}&desc=${encodeURIComponent(type==='icalendar' ? desc.replace(/(<([^>]+)>)/ig, '') : desc)}&start=${event.start}&end=${event.end}&address=${encodeURIComponent(event.venue.address)}`
     window.location.href = icsSharer;
@@ -143,12 +142,11 @@ export function generateEventUrl(event, encode, boomEventUrlBase, comp_id, insta
     if (event.kind === 4) {
         return event.eventPageUrl || '';
     } else {
-        console.log(event.start);
         return `${boomEventUrlBase}${encodeShareUrl(`${event.id}`)}?${encode ? encodeURIComponent(`comp_id=${comp_id}&instance=${instance}&startDate=${event.repeat.type ? moment(event.start).format('YYYY-MM-DD') : ""}`) : `comp_id=${comp_id}&instance=${instance}`}&startDate=${event.repeat.type ? moment(event.start).format('YYYY-MM-DD') : ""}`
     }
 }
 
-export function copyLink(e, event, setCopyTooltipText, copiedTooltipText, boomEventUrlBase, comp_id, instance) {
+export function copyLink(e, event, setCopyTooltipText, copiedTooltipText = DEFAULTS.copiedTooltipText, boomEventUrlBase, comp_id, instance) {
     e.stopPropagation();
     let a = document.createElement('textarea');
     a.innerText = generateEventUrl(event, false, boomEventUrlBase, comp_id, instance);
@@ -158,4 +156,46 @@ export function copyLink(e, event, setCopyTooltipText, copiedTooltipText, boomEv
     document.execCommand('copy');
     a.remove();
     setCopyTooltipText(copiedTooltipText);
+}
+
+export function checkProps(props) {
+    if(!props.showAddToIcons && !props.showShareIcons)  {
+        console.warn('AddShareIcons component is called, but both showAddToIcons and showShareIcons properties are falsy');
+        return;
+    }
+
+    if(!props.comp_id) {
+        console.error('component is not rendered as comp_id was missing in props or a falsy value is assagned to it');
+        return;
+    }
+
+    if(!props.instance) {
+        console.error('component is not rendered as instance was missing in props or a falsy value is assagned to it');
+        return;
+    }
+
+    if(!props.event || !props.event.hasOwnProperty('id')) {
+        console.error('component is not rendered as event object was missing in props or doesn\'t match to event object skeleton');
+        return;
+    }
+
+    if(!props.boomEventUrlBase) {
+        console.error('component is not rendered as boomEventUrlBase was missing in props or a falsy value is assagned to it');
+        return;
+    }
+    
+    return true
+}
+
+export function generateCustomClassNames(classNames) {
+    if(!classNames || classNames.length === 0) return '';
+    return ' ' + classNames.join(' ') ?? ''
+}
+
+export const DEFAULTS = {
+    addToSectionTitle: 'Add to calendar',
+    shareSectionTitle: 'Share Event',
+    copyActionTooltipText: 'Copy event url',
+    copiedTooltipText: 'Copied',
+    sequence: ['vertical', 'horizontal']
 }
